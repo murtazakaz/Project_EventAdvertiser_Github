@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        }
+    }
+}

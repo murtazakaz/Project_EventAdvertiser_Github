@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        <title>BTC Card</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+    </head>
+    <body>
+         <div id="signup_page" data-theme="b" data-role="page">
+         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';">Help </h1>
+            <a id="_home" href="#myPanel" class="ui-btn-left" data-icon="bars" data-iconpos="notext">Menu</a>
+            <input type="hidden" id="edt_mail" />
+        </div>
+		  <div data-role="panel" id="myPanel" data-display="push" data-position="left" data-theme="b" style="    background:#3c78c2;">
+            <center><img src="img/profile.png"/>
+			<h5>btccard@gmail.com</h5></center>
+			<br/><br/>
+            <ul data-role="listview" data-inset="false">
+
+                <!--<li data-icon="comment"><a id="go_index" href="#" style="font-family:'Microsoft NeoGothic';">Push Notification</a></li>-->
+                <li data-icon="money"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">Money</a></li>
+				<li data-icon="info"><a id="go_history" href="about.html" style="font-family:'Microsoft NeoGothic';">About Us</a></li>
+				<li data-icon="user"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">My Profile</a></li>
+				<li data-icon="credit-card"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">Money gives the following options</a></li>
+				<li data-icon="action"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">My balance</a></li>
+				<li data-icon="plus"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">Add BTC</a></li>
+                <li data-icon="mail-forward"><a id="go_reserv" href="#" style="font-family:'Microsoft NeoGothic';">Send BTC</a></li>
+                <li data-icon="money"><a id="go_traffic" href="#" style="font-family:'Microsoft NeoGothic';">Exchange currencies</a></li>
+				<li data-icon="action"><a id="go_rate" href="#" style="font-family:'Microsoft NeoGothic';">Top Up Card</a></li>
+                <li data-icon="clock"><a id="go_about" href="#" style="font-family:'Microsoft NeoGothic';">History</a></li>
+				<li data-icon="th-large"><a id="go_history" href="terms.html" style="font-family:'Microsoft NeoGothic';">Terms & Conditions</a></li>
+				<li data-icon="th-large"><a id="go_history" href="privacy.html" style="font-family:'Microsoft NeoGothic';">Privacy Policy</a></li>
+				<li data-icon="credit-card"><a id="go_history" href="#" style="font-family:'Microsoft NeoGothic';">Cardholder Agreements</a></li>
+				<li data-icon="user"><a id="go_history" href="contact.html" style="font-family:'Microsoft NeoGothic';">Contact Us</a></li>
+				<li data-icon="th-large"><a id="go_history" href="help.html" style="font-family:'Microsoft NeoGothic';">Help</a></li>
+                <li data-icon="gear"><a id="go_profile" href="#" onclick="profile_edit();" style="font-family:'Microsoft NeoGothic';">Settings</a></li>
+                <li data-icon="power"><a id="go_logout" href="index.html" style="font-family:'Microsoft NeoGothic';">Logout</a></li>
+            </ul>
+        </div>
+          <div id="main_signup" data-role="content">
+              <div class="panel panel-default">
+				<div class="panel-body">
+					<center><h2>Help</h2></center>
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+					<div data-role="collapsible" data-theme="b" data-content-theme="b">
+   					 	<h4>Your Question Here ?</h4>
+   					 	<p>content goes here content goes here content goes here content goes here content goes here .</p>
+					</div>
+					
+				</div>
+			  </div>
+          </div>
+          
+        </div>
+    </body>
+</html>

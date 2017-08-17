@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        <title>Event</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+    </head>
+    <body onload=" viewEventdetails();">
+         <div id="signup_page" data-theme="b" data-role="page">
+         <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <h1 style="font-family:'Microsoft NeoGothic';">Post Event</h1>
+            <a id="_home" href="#myPanel" class="ui-btn-left" data-icon="bars" data-iconpos="notext">Menu</a>
+            <input type="hidden" id="edt_mail" />
+        </div>
+		     <div data-role="panel" id="myPanel"  style="background:url('img/slider.png')no-repeat;"  data-display="push" data-position="left" data-theme="a" >
+            <center><img id="userPic" src="img/profile.png" style="border-radius: 50%;height: 100px;width: 50%; border: 2px solid white;" />
+		<div id="emailid" style="color: white;" ></div>
+			</center>
+			<br/><br/>
+            <ul data-role="listview" data-inset="false">
+				<li><a id="go_history" onclick="postEventBanner()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">View your event</a></li>
+				<li><a id="go_history" onclick="category()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">All Categories</a></li>
+                <li><a id="go_history" onclick="arts()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Arts & Culture</a></li>
+				<li><a id="go_history" onclick="career()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Career & Business</a></li>
+				<li><a id="go_history" onclick="dance()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Dancing</a></li>
+				<li><a id="go_history" onclick="education()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Education & Learning </a></li>
+				<li><a id="go_history" onclick="film()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Film & Media</a></li>
+				<li><a id="go_history" onclick="games()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Games</a></li>
+				<li><a id="go_history" onclick="food()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Food & Drink</a></li>
+				<li><a id="go_history" onclick="health()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Health & WEllbeing</a></li>
+				<li><a id="go_history" onclick="hobbies()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Hobbies & Craft</a></li>
+				<li><a id="go_history" onclick="community()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Community & Environment</a></li>
+                <li><a id="go_logout" href="login.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Sign Out</a></li>
+            </ul>
+        </div>
+          <div id="main_signup" data-role="content" style="padding: 10px;">
+              <div id="wrapper">
+			  
+			  
+			  </div>
+					<!-- <center><h2>Event Details</h2></center> -->
+					
+					
+					<!-- <input type="text" name="text-basic" placeholder="Event Name" id="ename" value=""> -->
+					
+					<!-- <input type="number" name="text-basic" placeholder="Event Price $" id="eprice" value=""> -->
+					<!-- <label for="text-basic">Event Date:</label> -->
+					<!-- <input type="date" name="text-basic" id="edate" style=" line-height: 20px;" value=""> -->
+					<!-- <label for="text-basic">Event Time:</label> -->
+					<!-- <input type="time" name="text-basic" id="etime"  style=" line-height: 20px;" value=""> -->
+					<!-- <input type="text" name="text-basic" id="description"  style=" line-height: 40px;" placeholder="Description" value=""> -->
+					<!-- <input type="text" name="text-basic" placeholder="Address" id="eaddress" value=""> -->
+					
+					<!-- <input type="text" name="text-basic" placeholder="City" id="ecity" value=""> -->
+					
+					<!-- <input type="text" name="text-basic" placeholder="Country" id="ecountry" value=""> -->
+					<!-- <!-- <div data-role="fieldcontain"> --> 
+					   <!-- <!-- <label for="select-choice-1" class="select">Post By:</label> --> 
+					   <!-- <!-- <select name="select-choice-1" id="select-choice-1"> --> 
+						  <!-- <!-- <option value="standard" style="color:#000">Nearby</option> --> 
+						  <!-- <!-- <option value="rush" style="color:#000">Trending</option> --> 
+						  <!-- <!-- <option value="express" style="color:#000">Weekend</option> --> 
+					   <!-- <!-- </select> --> 
+					<!-- <!-- </div> --> 
+					<!-- <!-- <label for="text-basic">Banner Image:</label> --> 
+					<!-- <!-- <input type="file" name="text-basic" id="text-basic" value=""> --> 
+					<!-- <!-- <label for="text-basic">Icon Image:</label> --> 
+					<!-- <!-- <input type="file" name="text-basic" id="text-basic" value=""> --> 
+					<!-- <a onclick="postEvent()" style="text-decoration:none;"><button style="margin-top: 20px;" type="submit" id="signup" >Next</button></a> -->
+			
+
+				
+          </div>
+          
+        </div>
+    </body>
+</html>

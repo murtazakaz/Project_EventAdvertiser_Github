@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link href="css/jqm-icon-pack-fa.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="lib/jquery-mobile/css/jquery.mobile-1.4.0.min.css" />
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile-router/js/jquery.mobile.router.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-mobile/js/jquery.mobile-1.4.0.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Cufflink</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+
+       <!-- <script>
+         window.onload = function(){
+                function getUrlParameter(sParam){
+            		var st = document.URL.substr(document.URL.indexOf('?') + 1);
+
+                    var st1 = st.split('&');
+
+                    return st1[sParam].substr(3);
+            	}
+            $('#pro_name').text(getUrlParameter(0));
+            $('#pro_descp').text(getUrlParameter(1));
+            $('#pro_price').text(getUrlParameter(2));
+            }
+        </script>-->
+
+    </head>
+    <body>
+        <div id="pro1_dlg" data-role="page" data-dialog="true" data-theme="b">
+           <div id="header-img" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <div data-role="navbar">
+                <h3 style="text-align:center;color:gray;">Product Description</h3>
+
+            </div>
+        </div>
+
+        <div data-role="content">
+            <img src="img/cuf1.png" width="90%" height="250px"/>
+            <h3 id="pro_name">The Royal Oak</h3>
+            <p id="pro_descp">Robustly steadfast, gold and green, an enduring symbol of reliability and nobility</p>
+            <p id="pro_price">&pound;49.99</p>
+            <button type="submit" id="addcart" value="okay" onclick="addcart();">Add to Cart</button>
+            
+        </div>
+        
+        </div>
+         <div id="pro2_dlg" data-role="page" data-dialog="true" data-theme="b">
+            <div id="header-img" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <div data-role="navbar">
+                <h3 style="text-align:center;color:gray;">Product Description</h3>
+
+            </div>
+        </div>
+        <div data-role="content">
+            <img src="img/cuf2.png" width="90%" height="250px"/>
+            <h3 id="pro_name">The English Rose</h3>
+            <p id="pro_descp">In blue and gold, the rose is the true mark of the English romantic</p>
+            <p id="pro_price">&pound;49.99</p>
+            <button type="submit" id="addcart" value="okay" onclick="addcart();">Add to Cart</button>
+            
+        </div>
+        </div>
+         <div id="pro3_dlg" data-role="page" data-dialog="true" data-theme="b">
+            <div id="header-img" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <div data-role="navbar">
+                <h3 style="text-align:center;color:gray;">Product Description</h3>
+
+            </div>
+        </div>
+        <div data-role="content">
+            <img src="img/cuf3.png" width="90%" height="250px"/>
+            <h3 id="pro_name">The Shamrock</h3>
+            <p id="pro_descp">A young sprig of clover that symbolises the very essence of the Irish, in bright white and</p>
+            <p id="pro_price">&pound;49.99</p>
+            <button type="submit" id="addcart" value="okay" onclick="addcart();">Add to Cart</button>
+            
+        </div>
+        </div>
+         <div id="pro4_dlg" data-role="page" data-dialog="true" data-theme="b">
+            <div id="header-img" data-position="fixed" data-tap-toggle="false" data-role="header">
+
+            <div data-role="navbar">
+                <h3 style="text-align:center;color:gray;">Product Description</h3>
+
+            </div>
+        </div>
+        <div data-role="content">
+            <img src="img/cuf4.png" width="90%" height="250px"/>
+            <h3 id="pro_name">The Griffin</h3>
+            <p id="pro_descp">A magnificent mythological creature with an eagles head and wings joined to the body of</p>
+            <p id="pro_price">&pound;49.99</p>
+            <button type="submit" id="addcart" value="okay" onclick="addcart();">Add to Cart</button>
+            
+        </div>
+        </div>
+        <script>
+            function addcart(){
+                alert("One item has been added to your cart");
+                window.location.href='home.html';
+            }
+        </script>
+    </body>
+</html>
