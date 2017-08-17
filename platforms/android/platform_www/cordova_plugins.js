@@ -214,6 +214,22 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification_android",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -223,7 +239,8 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-file": "4.0.0",
     "cordova-plugin-file-transfer": "1.6.3",
-    "cordova-plugin-whitelist": "1.3.2"
+    "cordova-plugin-whitelist": "1.3.2",
+    "cordova-plugin-dialogs": "1.3.3"
 };
 // BOTTOM OF METADATA
 });

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\xampp\htdocs\kpprAdvertiser\platforms\android\CordovaLib\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="C:\xampp\htdocs\kpprAdvertiser\platforms\android\CordovaLib\src\release\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\xampp\htdocs\Project_EventAdvertiser_Github\platforms\android\CordovaLib\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="C:\xampp\htdocs\Project_EventAdvertiser_Github\platforms\android\CordovaLib\src\release\jniLibs"/></dataSet></merger>

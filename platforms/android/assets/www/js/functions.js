@@ -76,18 +76,30 @@ function signup(){
 					var str= data;	
 					
 				if(str.Status == "exist")
-				{ alert("Email already exist, Try Again");}	
+				{
+					//alert("Email already exist, Try Again");
+					navigator.notification.alert('Email already exist, Try Again', null, 'Email verification failed', 'Try Again');
+			}	
 				else{
-			   alert("Email has been sent to " + email );
+			//   alert("Email has been sent to " + email );
+			   
+			   navigator.notification.alert('Email has been sent to '+email, null, 'Email verification', 'Ok');
+			   
 			    window.location.href = "verifyaccount.html?"+dataString+"&code="+str.Status+"";
 			}
 			
 	   
                     }
 				  });  }
-					else { alert("Confirm password donot match");}
+					else {
+						//alert("Confirm password donot match");
+					navigator.notification.alert('Confirm password donot match', null, 'Password Confirmation', 'Try Again');
+					}
          }
-		 else { alert("Please Fill in all fields");}		 
+		 else { 
+		// alert("Please Fill in all fields");
+		 navigator.notification.alert('Please Fill in all fields', null, 'Registration failed', 'Try Again');
+		 }		 
         };
 		
 		
@@ -122,15 +134,21 @@ function signup(){
 			   window.location.href = "imageupload.html?email="+email+"";
 			}
 			if(str.Status == "exist")
-			{alert("Email already Exist, Try again");
+			{navigator.notification.alert('Email already exist, Try Again', null, 'Email verification failed', 'Try Again');
 			}
 			
                         
                     }
                     });   
-                } else {alert("Invalid Code");}
+                } else {
+					// alert("Invalid Code");
+				navigator.notification.alert('Invalid Code', null, 'Code verification failed', 'Try Again');
+				}
          }
-		 else { alert("Please Enter Code");}		 
+		 else { 
+		 alert("Please Enter Code");
+		 navigator.notification.alert('Please Enter Code', null, 'Code verification failed', 'Try Again');
+		 }		 
         };		
 //sign in
 function signin(){
@@ -149,20 +167,26 @@ function signin(){
                     success: function(data){
 					// loadhide();
 					var str= data;	
+					
 			if(data.Status == "success"){
 			// alert("Welcome, "+ str.username);
+			   navigator.notification.alert('Welcome '+str.username, null, 'Login successfully', 'ok');
 			   window.location.href = "categories.html?user_id="+str.id+"&email="+email+"&fbpic="+str.image+"";
 			}
 			else{
-				alert("Email or Password Incorrect : Please Retry");
-				window.location.href = "login.html";
+				//alert("Email or Password Incorrect : Please Retry");
+				 navigator.notification.alert('Email or Password Incorrect', null, 'Login failed', 'Try Again');
+				//window.location.href = "login.html";
 			    }
                         
                     }
                     });   
                 
          }
-		 else { alert("Please Fill in all fields");}		 
+		 else {
+			 //alert("Please Fill in all fields");
+		navigator.notification.alert('Please Fill in all fields', null, 'Login failed', 'Try Again');			 
+		 }		 
         };		
 		
 //uploading image 		
@@ -258,6 +282,8 @@ function upload()
 			var event_country= $("#ecountry").val();
 			var event_description= $("#description").val();
 			 var dataString = "user_id="+ user_id +"&category=" + category + "&event_name=" + event_name + "&event_price=" + event_price + "&event_date=" + event_date +"&event_time=" + event_time + "&event_address=" + event_address + "&event_city=" + event_city + "&event_country=" + event_country + "&event_description=" + event_description;
+			 
+			 // alert(user_id);
 			  if ($.trim(user_id).length > 0 && $.trim(event_name).length > 0 && $.trim(event_price).length > 0 && $.trim(event_date).length > 0   && $.trim(event_time).length > 0 && $.trim(event_address).length > 0 && $.trim(event_city).length > 0 && $.trim(event_country).length > 0 && $.trim(event_description).length > 0   ) {
                    
 					// if( code == ucode){
@@ -275,7 +301,10 @@ function upload()
 			}
 			
 			if(str.Status == "exist")
-			{alert("Event already exist");
+			{
+				//alert("Event already exist");
+				navigator.notification.alert('Event already exist', null, 'Event Posting Failed', 'Try Again');		
+		
 			}
 			
                         
@@ -284,7 +313,7 @@ function upload()
                 // } else {alert("Invalid Code");}
          }
 		 else { 
-		 alert("Please Fill all fields");
+		 navigator.notification.alert('Please Fill in all fields', null, 'Event Posting Failed', 'Try Again');	
 		 }		 
         };		
 
@@ -304,7 +333,11 @@ function uploadBannerFromGallery() {
 
 }
 function onFail(message) {
-alert('Failed because: ' + message);
+//alert('Failed because: ' + message);
+		 
+navigator.notification.alert(message, null, 'Banner upload failed', 'Try Again');	
+
+
 }
 
 function uploadBanner(imageURI) {
