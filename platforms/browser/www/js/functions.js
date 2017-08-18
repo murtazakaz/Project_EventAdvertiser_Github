@@ -67,14 +67,16 @@ function signup(){
 			//alert(dataString);
 			  if ($.trim(fname).length > 0 && $.trim(email).length > 0 && $.trim(pass).length > 0 && $.trim(confirm_password).length > 0 && $.trim(contact).length > 0  && $.trim(city).length > 0 && $.trim(country).length > 0) {
 				  if( pass == confirm_password){
-              
+               var options = { dimBackground: true };
+			  SpinnerPlugin.activityStart("Checking Email availability...", options); 
                  $.ajax({
                     url: "http://kppreventsmarketing.com/webservices/verifyemail.php",
                     type: "POST",
                     data: {email: email},
                     success: function(data){
 					var str= data;	
-					
+			 
+			  SpinnerPlugin.activityStop(); 	
 				if(str.Status == "exist")
 				{
 					//alert("Email already exist, Try Again");
@@ -121,6 +123,9 @@ function signup(){
 			  if ($.trim(email).length > 0 && $.trim(code).length > 0) {
                    
 					if( code == ucode){
+					var options = { dimBackground: true };
+					SpinnerPlugin.activityStart("Verifying Account...", options); 	
+						
 				  $.ajax({
                     url: "http://kppreventsmarketing.com/webservices/register.php",
                     type: "POST",
@@ -129,12 +134,15 @@ function signup(){
                     success: function(data){
 					var str= data;	
 					
-			if(str.Status == "success"){
+					SpinnerPlugin.activityStop(); 
+				
+				if(str.Status == "success"){
 			  // alert("You're now registered, " + fname );
 			   window.location.href = "imageupload.html?email="+email+"";
 			}
 			if(str.Status == "exist")
-			{navigator.notification.alert('Email already exist, Try Again', null, 'Email verification failed', 'Try Again');
+			{
+				navigator.notification.alert('Email already exist, Try Again', null, 'Email verification failed', 'Try Again');
 			}
 			
                         
@@ -146,10 +154,130 @@ function signup(){
 				}
          }
 		 else { 
-		 alert("Please Enter Code");
+		 // alert("Please Enter Code");
 		 navigator.notification.alert('Please Enter Code', null, 'Code verification failed', 'Try Again');
 		 }		 
         };		
+		
+//forget password verify email
+function forgetpassword(){
+           
+			 var email = $("#email").val();
+			 var dataString = "email="+ email ;
+			 // alert(email);
+			  if ($.trim(email).length > 0 ) {
+				var options = { dimBackground: true };
+				SpinnerPlugin.activityStart("Sending Verification Email...", options); 
+					
+				  $.ajax({
+                    url: "http://kppreventsmarketing.com/webservices/forgetpassword.php",
+                    type: "POST",
+                    data: dataString,
+                    success: function(data){
+					var str= data;	
+					
+				SpinnerPlugin.activityStop(); 
+				if(str.Status == "success"){
+					navigator.notification.alert('Verification Code has been at '+email, null, 'Email verification', 'ok');
+					
+					window.location = "verifycodeforgetpassword.html?email="+email+"";
+				}
+				else { navigator.notification.alert('You have entered an invalid Email', null, 'Invalid Email', 'Try Again');}
+                    }
+                    });  
+         }
+		 else { 
+
+		 navigator.notification.alert('Please Enter Email', null, 'Email verification failed', 'Try Again');
+		 }		 
+        };				
+//forgetpassword verify code
+function forgetpasswordverifycode(){
+           
+			 // var ucode = getParameterByName('code');
+			 var email =getParameterByName('email');
+			 var code = $("#code").val();
+			 
+			 var dataString = "email=" + email + "&code=" + code ;
+			  if ($.trim(email).length > 0 && $.trim(code).length > 0) {
+                var options = { dimBackground: true };
+				SpinnerPlugin.activityStart("Verifying Code...", options); 
+				  $.ajax({
+                    url: "http://kppreventsmarketing.com/webservices/forgetpasswordverifycode.php",
+                    type: "POST",
+                    data: dataString,
+                    success: function(data){
+					var str= data;	
+				
+			SpinnerPlugin.activityStop(); 
+			if(str.Status == "success"){
+				
+				navigator.notification.alert('Code is verified, now you can change your password', null, 'Code verification ', 'ok');
+			    window.location.href = "resetpassword.html?email="+email+"";
+			}
+			if(str.Status == "failed")
+			{
+				navigator.notification.alert('Invalid Code', null, 'Code verification failed', 'Try Again');
+			}
+			     
+                    }
+                    });   
+              
+         }
+		 else { 
+		 // alert("Please Enter Code");
+		 navigator.notification.alert('Please Enter Code', null, 'Code verification failed', 'Try Again');
+		 }		 
+        };
+
+//reset password
+
+function resetpassword(){
+           
+			
+			 var email =getParameterByName('email');
+			 var pass = $("#password").val();
+			 var confirmpassword = $("#confirmpassword").val();
+			 // alert(pass +" "+ confirmpassword);
+			 var dataString = "email=" + email + "&password=" + pass ;
+			  if ($.trim(email).length > 0 && $.trim(pass).length > 0 && $.trim(confirmpassword).length > 0) {
+                if(pass == confirmpassword){
+				
+				var options = { dimBackground: true };
+				SpinnerPlugin.activityStart("Reseting Password...", options); 
+				
+				$.ajax({
+                    url: "http://kppreventsmarketing.com/webservices/resetpassword.php",
+                    type: "POST",
+                    data: dataString,
+                    success: function(data){
+					var str= data;	
+					
+				SpinnerPlugin.activityStop(); 
+			if(str.Status == "success"){
+				
+				navigator.notification.alert('Your account Password has been Reset', null, 'Reset Password', 'ok');
+			   window.location = "login.html";
+			}
+			// if(str.Status == "failed")
+			// {
+				// navigator.notification.alert('Invalid Code', null, 'Code verification failed', 'Try Again');
+			// }
+			     
+                    }
+                    });   
+					
+				} else { navigator.notification.alert('Password do not match', null, 'Reset Password Failed', 'Try Again');}
+              
+         }
+		 
+		 else { 
+		 // alert("Please Enter Code");
+		 navigator.notification.alert('Please fill in all fields', null, 'Reset Password Failed', 'Try Again');
+		 }		 
+        };				
+				
+		
 //sign in
 function signin(){
               
@@ -160,6 +288,8 @@ function signin(){
 			 var dataString = "&email=" + email + "&pass=" + pass;
 			  if ($.trim(email).length > 0 && $.trim(pass).length > 0) {
 			  // loadshow();
+			   var options = { dimBackground: true };
+			   SpinnerPlugin.activityStart("Signing in...", options); 
                     $.ajax({
                     url: "http://kppreventsmarketing.com/webservices/login.php",
                     type: "POST",
@@ -168,6 +298,9 @@ function signin(){
 					// loadhide();
 					var str= data;	
 					
+			 var options = { dimBackground: true };
+			 SpinnerPlugin.activityStop();
+			  
 			if(data.Status == "success"){
 			// alert("Welcome, "+ str.username);
 			   navigator.notification.alert('Welcome '+str.username, null, 'Login successfully', 'ok');
@@ -213,12 +346,17 @@ function uploadFromGallery() {
 
 }
 function onFail(message) {
-alert('Failed because: ' + message);
+// alert('Failed because: ' + message);
+navigator.notification.alert('Failed', null, 'Image Uploading', 'Try Again');		
+
 }
 
 function uploadPhoto(imageURI) {
-	 // loadshow();
-    var options = new FileUploadOptions();
+ 
+ var options = { dimBackground: true };
+ SpinnerPlugin.activityStart("Image uploading...", options); 
+   
+   var options = new FileUploadOptions();
     options.fileKey="file";
     // options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
 	 mystring = imageURI.substr(imageURI.lastIndexOf('/')+1); 
@@ -243,7 +381,9 @@ function win(r) {
 	 // loadhide();
 	// regshow();
 	// alert("An upload: Code = " + r.response);
-	alert("Image uploaded");
+	// alert("Image uploaded");
+	SpinnerPlugin.activityStop(); 
+	navigator.notification.alert('Uploaded Successfully', null, 'Image Uploading', 'ok');
     // alert("Code = " + r.responseCode);
     // alert("Response = " + r.response);
     // alert("Sent = " + r.bytesSent);
@@ -252,7 +392,9 @@ function win(r) {
 function fail(error) {
 	 // loadhide();
     // alert("Check Internet connection = " + error.code);
-	 alert("Check Internet connection");
+	SpinnerPlugin.activityStop(); 
+	 // alert("Check Internet connection");
+	 navigator.notification.alert('Check Internet connection', null, 'Error', 'Try Again');
     // alert("upload error source " + error.source);
     // alert("upload error target " + error.target);
 }
@@ -285,7 +427,8 @@ function upload()
 			 
 			 // alert(user_id);
 			  if ($.trim(user_id).length > 0 && $.trim(event_name).length > 0 && $.trim(event_price).length > 0 && $.trim(event_date).length > 0   && $.trim(event_time).length > 0 && $.trim(event_address).length > 0 && $.trim(event_city).length > 0 && $.trim(event_country).length > 0 && $.trim(event_description).length > 0   ) {
-                   
+                   var options = { dimBackground: true };
+					SpinnerPlugin.activityStart("Event Posting...", options); 
 					// if( code == ucode){
 				  $.ajax({
                     url: "http://kppreventsmarketing.com/webservices/PostEvent.php",
@@ -294,7 +437,8 @@ function upload()
 					// {fname: fname, email: email,password:password , image: image , address : address , city : city , country :country , contact : contact},
                     success: function(data){
 					var str = data;	
-					
+				
+            SpinnerPlugin.activityStop(); 
 			if(str.Status > 0){
 			 
 			  window.location.href = "formImageUpload.html?"+dataString+"&email="+email+"&event_id="+str.Status+"&fbpic="+fbpic+"";
@@ -341,7 +485,9 @@ navigator.notification.alert(message, null, 'Banner upload failed', 'Try Again')
 }
 
 function uploadBanner(imageURI) {
-	 // loadshow();
+	
+	var options = { dimBackground: true };
+    SpinnerPlugin.activityStart("Banner uploading...", options); 
     var options = new FileUploadOptions();
     options.fileKey="file";
     // options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -370,8 +516,12 @@ mystring = mystring.split('?').join(newchar);
 //display all events by userid
 
 function displayevents() {
+		
 		var user_id = getParameterByName('user_id');
-        getinfo();
+        
+		getinfo();
+		// var options = { dimBackground: true };
+		// SpinnerPlugin.activityStart("Fetching...", options); 
             $.ajax({
                 type: "POST",
                 url: "http://kppreventsmarketing.com/webservices/ViewEventsByUserId.php",
@@ -380,7 +530,9 @@ function displayevents() {
                 crossDomain: true,
                 dataType: "json",
                 success: function (response) {
-                    var str = response;
+                 
+				// SpinnerPlugin.activityStop(); 
+					var str = response;
 					
 					var tt;
 					for (i in str)
@@ -433,6 +585,8 @@ function viewEventdetails(){
 	
 		 var event_id =getParameterByName('event_id');
 		   getinfo();
+		   var options = { dimBackground: true };
+			SpinnerPlugin.activityStart("Fetching...", options); 
             $.ajax({
                 type: "POST",
                 url: "http://kppreventsmarketing.com/webservices/vieweventbyeventid.php",
@@ -443,6 +597,7 @@ function viewEventdetails(){
                 success: function (response) {
                     var str = response;
 					
+				SpinnerPlugin.activityStop(); 
 					var tt;
 					for (i in str)
                     {	  var d = new Date(str[i].event_date);
@@ -490,8 +645,13 @@ function viewEventdetails(){
 	
 	
 }
-		
+//fblogin
 
+
+		
+function Pageforgetpassword(){
+	window.location = "forgetpassword.html";
+}
 //categories pages functions 
 function postEventBanner()
 { window.location = "viewads.html?user_id="+user_id+"&email="+email+"&fbpic="+fbpic+""; };

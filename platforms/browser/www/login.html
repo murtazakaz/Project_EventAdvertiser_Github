@@ -13,7 +13,87 @@
         <title>Event</title>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>	
+		<script type="text/javascript" src="js/openfb.js"></script>
+		<script>
+     // Defaults to sessionStorage for storing the Facebook token
+     //openFB.init({appId: '1631000013585116'});
+    //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+    openFB.init({appId: '1631000013585116', tokenStore: window.localStorage});
+    function login() {
+        openFB.login(
+                function(response) {
+                    if(response.status === 'connected') {
+                        <!-- alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken); -->
+						 //fbid = response.authResponse.accessToken;
+						 
+						loadshow();
+						getInfo();
+						
+                    } else {
+                        <!-- alert('Facebook login failed: ' + response.error); -->
+                    }
+                }, {scope: 'email,read_stream,publish_actions'});
+    }
+    function getInfo() {
+        openFB.api({
+            path: '/me',
+            success: function(response) {
+                console.log(JSON.stringify(response));
+             //   document.getElementById("userName").innerHTML = data.name;
+				 fbname = response.name;
+				 <!-- fbemail = data.email; -->
+				 alert(response.email);
+				// document.getElementById("userid").innerHTML = data.id;
+				//fbpic= data.id;
+             //  document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+				 fbpic= 'http://graph.facebook.com/' + response.id + '/picture?type=small';
+				 
+				// alert(data.id);
+				 fbid= response.id;
+                
+            $.ajax({
+                    url: "http://govirtualstore.com/app/iOS/loginfb.php",
+                    type: "POST",
+                    data: {fbname: fbname, fbid: fbid},
+                    success: function(data){
+					var str= data;	
+					
+			if(str.Status == "success"){
+			loadhide();
+			  // alert("Welcome, " + str.username );
+			   	window.location = "categories.html?user="+str.id+"&email="+fbname+"&fbpic="+fbpic+"";
+			}
+			if(str.Status == "exist")
+			{alert("Email already Exist, Try again");
+			}
+			
+                        
+                    }
+                    });   
+	
+			
+                        
+                  
+            },
+            error: errorHandler});
+    }
+	
+   
+    function logout() {
+        openFB.logout(
+                function() {
+                    alert('Logout successful');
+                },
+                errorHandler);
+    }
+    function errorHandler(error) {
+        alert(error.message);
+    }
+	
+	
+</script>
+
     </head>
     <body>
          <div id="login_page" data-role="page" style="background-image: url('img/1.jpg'); background-size:cover">
@@ -36,9 +116,9 @@
            
 		   <a href="signup.html" style="text-decoration:none;"><button class="ui-btn ui-icon-thumbs-up ui-btn-icon-left" data-transition="pop" type="submit" id="logon" value="Login" style="background:#189fd3;padding-left: 9px; border-radius: 50px;text-shadow: none;  border: none;">Register </button></a>   
 		   <br>
-		   <a style="color: white; text-shadow: none;" >Forget Password?</a>
+		   <a onclick="Pageforgetpassword()" style="color: white; text-shadow: none;" >Forget Password?</a>
              <br><br>
-			 <a href="#"><img src="img/fb.png" style=" width: 30%;" /></a>
+			 <a  href="#"><img src="img/fb.png" style=" width: 30%;" /></a>
              
 			 <a href="#"><img src="img/g.png" style="width: 24%;" /></a>
                    
