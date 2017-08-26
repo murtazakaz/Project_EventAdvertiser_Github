@@ -43,6 +43,7 @@ function getinfo()
 	
 	document.getElementById('emailid').innerHTML=email;
 	document.getElementById("userPic").src =fbpic;
+	document.getElementById("userPic").alt ="img/profile.png";
 	}
 
 	
@@ -276,7 +277,13 @@ function resetpassword(){
 		 navigator.notification.alert('Please fill in all fields', null, 'Reset Password Failed', 'Try Again');
 		 }		 
         };				
-				
+// function display()
+// {
+	
+	// var display;
+	// vaqr email = $(#email )
+	
+// }			
 		
 //sign in
 function signin(){
@@ -509,19 +516,41 @@ mystring = mystring.split('?').join(newchar);
 	// alert(imageURI);
     ft.upload(imageURI, encodeURI("http://kppreventsmarketing.com/webservices/UploadBanner.php?event_id="+event_id+""), win, fail, options);
 }
+function win(r) {
+	 // loadhide();
+	// regshow();
+	// alert("An upload: Code = " + r.response);
+	// alert("Image uploaded");
+	SpinnerPlugin.activityStop(); 
+	navigator.notification.alert('Uploaded Successfully', null, 'Image Uploading', 'ok');
+    // alert("Code = " + r.responseCode);
+    // alert("Response = " + r.response);
+    // alert("Sent = " + r.bytesSent);
+}
 
+function fail(error) {
+	 // loadhide();
+    // alert("Check Internet connection = " + error.code);
+	SpinnerPlugin.activityStop(); 
+	 // alert("Check Internet connection");
+	 navigator.notification.alert('Check Internet connection', null, 'Error', 'Try Again');
+    // alert("upload error source " + error.source);
+    // alert("upload error target " + error.target);
+}
 // redirect to view user events
 
 
 //display all events by userid
-
-function displayevents() {
+function displayevents(){ 
+document.addEventListener("deviceready", displayeventpage , false);
+}
+function displayeventpage() {
 		
 		var user_id = getParameterByName('user_id');
         
 		getinfo();
-		// var options = { dimBackground: true };
-		// SpinnerPlugin.activityStart("Fetching...", options); 
+		var options = { dimBackground: true };
+		SpinnerPlugin.activityStart("Fetching...", options); 
             $.ajax({
                 type: "POST",
                 url: "http://kppreventsmarketing.com/webservices/ViewEventsByUserId.php",
@@ -531,7 +560,7 @@ function displayevents() {
                 dataType: "json",
                 success: function (response) {
                  
-				// SpinnerPlugin.activityStop(); 
+				SpinnerPlugin.activityStop(); 
 					var str = response;
 					
 					var tt;
@@ -567,7 +596,7 @@ function displayevents() {
 					//	var n = d.getDay()
 						// alert(str[i].event_id);
 						
-                        tt = "<a onclick='viewdetail("+str[i].event_id+")' style='text-decoration:none;'><img src='"+str[i].event_banner+"' style='width:100%;margin-top: 0px; height: 200px;'/><img src='img/"+str[i].category+".png' style=' margin-top: -25px;margin-left: 20px;'/><h4 style='margin-left: 100px;margin-top: -40px;'>"+str[i].event_name+"</h4><center><p style='margin-top: 20px;'><img src='img/user.png'/> "+str[i].event_users+"  <img src='img/calender.png'/>"+day+" "+month+" "+date+", "+year+"  <img src='img/time.png'/> "+str[i].event_time+" <img src='img/star.PNG'/>  "+str[i].event_rating+"/5</p></center><center><p style='margin-top: 20px;'><img src='img/location.png'/> "+str[i].event_address+", "+str[i].event_city+", "+str[i].event_country+"</p></center></a>";
+                        tt = "<a onclick='viewdetail("+str[i].event_id+")' style='text-decoration:none;'><img src='"+str[i].event_banner+"' alt='No image found' style='width:100%;margin-top: 0px; height: 200px;'/><img src='img/"+str[i].category+".png' style=' margin-top: -25px;margin-left: 20px;'/><h4 style='margin-left: 100px;margin-top: -40px;'>"+str[i].event_name+"</h4><center><p style='margin-top: 20px;'><img src='img/user.png'/> "+str[i].event_users+"  <img src='img/calender.png'/>"+day+" "+month+" "+date+", "+year+"  <img src='img/time.png'/> "+str[i].event_time+" <img src='img/star.PNG'/>  "+str[i].event_rating+"/5</p></center><center><p style='margin-top: 20px;'><img src='img/location.png'/> "+str[i].event_address+", "+str[i].event_city+", "+str[i].event_country+"</p></center></a>";
                         $("#wrapper").append(tt);
 					   
 					   						 
@@ -579,14 +608,20 @@ function displayevents() {
 		
 		
 function viewdetail(id)
-{  window.location="eventdetails.html?event_id="+id+"&user_id="+user_id+"&email="+email+"&fbpic="+fbpic+"";}		
+{  window.location="eventdetails.html?event_id="+id+"&user_id="+user_id+"&email="+email+"&fbpic="+fbpic+"";}
+
+function viewEventdetails(){ 
+document.addEventListener("deviceready", viewEventdetailpage , false);
+}		
 //view event details by event id
-function viewEventdetails(){
+function viewEventdetailpage(){
 	
+
+				   var options = { dimBackground: true };
+			SpinnerPlugin.activityStart("Fetching...", options); 
 		 var event_id =getParameterByName('event_id');
 		   getinfo();
-		   var options = { dimBackground: true };
-			SpinnerPlugin.activityStart("Fetching...", options); 
+
             $.ajax({
                 type: "POST",
                 url: "http://kppreventsmarketing.com/webservices/vieweventbyeventid.php",
@@ -632,7 +667,7 @@ function viewEventdetails(){
 						// alert(str[i].event_id);
 						available= str[i].event_capacity - str[i].event_ticket_sold;
 						
-                        tt = "<img src='"+str[i].event_banner+"' style='width:100% ; height: 200px;'/><img src='img/"+str[i].category+".png' style='margin-left:20px;margin-top: -25px;'/><h4 style='margin-left:100px;margin-top: -35px;'>"+str[i].event_name+"</h4><center><p style='margin-top: 20px;'><img src='img/user.png'/> "+str[i].event_users+" <img src='img/calender.png'/> "+day+" "+month+" "+date+", "+year+" <img src='img/time.png'/> "+str[i].event_time+"</p></center><center><p style='font-size: 18px;font-weight: 500;'><img src='img/dollar.png'/> "+str[i].event_price+"</p></center><br><center><p style='margin-top: -10px;'><img src='img/star"+str[i].event_rating+".png'/><br> "+str[i].event_rating+" Reviews</p></center><center><p style='margin-top: 20px;'><img src='img/location.png'/> "+str[i].event_address+", "+str[i].event_city+", "+str[i].event_country+"</p></center><div class='ui-grid-b'><div class='ui-block-a' style='float: right;width:45%'><div class='ui-bar ui-bar-a' style='height:50px;background: none;border: none;'><button type='button' class='btn btn-primary' style='background:#ffa627;color:#fff;font-size: 12px;margin-left:-10px;'>"+available+" Available</button></div></div><div class='ui-block-b' style='float: right;width:45%'><div class='ui-bar ui-bar-a' style='height:50px;background: none;border: none;'><button type='button' class='btn btn-primary' style='background:#ffa627;color:#fff;font-size: 12px;margin-left:-10px;'>"+str[i].event_ticket_sold+" Sold</button></div></div></div><div id='main_login' data-role='content' style='padding: 10px;'><p>Description:</p><p>"+str[i].event_description+"</p><button type='button' class='btn btn-primary' style='color: #fff; background: #333; border-color: #333; width: 100%;'>Book Now</button></div>";
+                        tt = "<img src='"+str[i].event_banner+"' alt='No image found' style='width:100% ; height: 200px;'/><img src='img/"+str[i].category+".png' style='margin-left:20px;margin-top: -25px;'/><h4 style='margin-left:100px;margin-top: -35px;'>"+str[i].event_name+"</h4><center><p style='margin-top: 20px;'><img src='img/user.png'/> "+str[i].event_users+" <img src='img/calender.png'/> "+day+" "+month+" "+date+", "+year+" <img src='img/time.png'/> "+str[i].event_time+"</p></center><center><p style='font-size: 18px;font-weight: 500;'><img src='img/dollar.png'/> "+str[i].event_price+"</p></center><br><center><p style='margin-top: -10px;'><img src='img/star"+str[i].event_rating+".png'/><br> "+str[i].event_rating+" Reviews</p></center><center><p style='margin-top: 20px;'><img src='img/location.png'/> "+str[i].event_address+", "+str[i].event_city+", "+str[i].event_country+"</p></center><div class='ui-grid-b'><div class='ui-block-a' style='float: right;width:45%'><div class='ui-bar ui-bar-a' style='height:50px;background: none;border: none;'><button type='button' class='btn btn-primary' style='background:#ffa627;color:#fff;font-size: 12px;margin-left:-10px;'>"+available+" Available</button></div></div><div class='ui-block-b' style='float: right;width:45%'><div class='ui-bar ui-bar-a' style='height:50px;background: none;border: none;'><button type='button' class='btn btn-primary' style='background:#ffa627;color:#fff;font-size: 12px;margin-left:-10px;'>"+str[i].event_ticket_sold+" Sold</button></div></div></div><div id='main_login' data-role='content' style='padding: 10px;'><p>Description:</p><p>"+str[i].event_description+"</p></div>";
                        
                         $("#wrapper").append(tt);
 					   
@@ -645,8 +680,226 @@ function viewEventdetails(){
 	
 	
 }
-//fblogin
+//edit event
+function editEvent()
+{  
+		 var event_id =getParameterByName('event_id');
+		 window.location = "editEvent.html?event_id="+event_id+"&user_id="+user_id+"&email="+email+"&fbpic="+fbpic+"";
 
+ }
+
+function editEventload(){ 
+document.addEventListener("deviceready", editEventpage , false);
+}		
+//view event details by event id
+function editEventpage(){
+	// alert("a");
+		 var options = { dimBackground: true };
+		SpinnerPlugin.activityStart("Fetching...", options); 
+		 var event_id =getParameterByName('event_id');
+		   getinfo();
+
+            $.ajax({
+                type: "POST",
+                url: "http://kppreventsmarketing.com/webservices/vieweventbyeventid.php",
+                cache: false,
+				data: {event_id: event_id},
+                crossDomain: true,
+                dataType: "json",
+                success: function (response) {
+                    var str = response;
+					
+				SpinnerPlugin.activityStop(); 
+					var tt;
+					for (i in str)
+                    {	  
+			
+					   console.log(str[i].event_name);
+		    document.getElementById('bannerImgSrc').src=str[i].event_banner; 
+			document.getElementById('ename').value=str[i].event_name; 	
+			document.getElementById('eprice').value=str[i].event_price; 
+			document.getElementById('edate').value=str[i].event_date; 
+			document.getElementById('etime').value=str[i].event_time; 
+			document.getElementById('eaddress').value=str[i].event_address; 
+			document.getElementById('ecity').value=str[i].event_city; 			
+			document.getElementById('ecountry').value=str[i].event_country; 
+			document.getElementById('description').value=str[i].event_description; 
+			
+						  
+					
+                    }
+                }
+            });
+		 
+	
+	
+}
+
+//update banner
+function changeimage(){
+
+    // Retrieve image file location from specified source
+    navigator.camera.getPicture(uploadBannerUpdate,
+                                function(message) { alert('get picture failed'); },
+                                { quality: 40, 
+								correctOrientation : true,
+                                destinationType: navigator.camera.DestinationType.FILE_URI,
+                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                );
+
+}
+function onFail(message) {
+//alert('Failed because: ' + message);
+		 
+navigator.notification.alert(message, null, 'Banner upload failed', 'Try Again');	
+
+
+}
+
+function uploadBannerUpdate(imageURI) {
+	
+	var options = { dimBackground: true };
+    SpinnerPlugin.activityStart("Banner uploading...", options); 
+    
+	var options = new FileUploadOptions();
+    options.fileKey="file";
+    // options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+	 mystring = imageURI.substr(imageURI.lastIndexOf('/')+1); 
+     
+	 var newchar = '1';
+	mystring = mystring.split('?').join(newchar);
+	options.fileName=mystring;
+    options.mimeType="image/jpeg";
+    imagesrc = imageURI;
+	
+	document.getElementById("bannerImgSrc").src = imagesrc;
+	// alert("save "+imagesrc);
+	 var event_id =getParameterByName('event_id');
+	
+    var params = new Object();
+    options.params = params;
+	 options.chunkedMode = false;
+   
+   var ft = new FileTransfer();
+	// alert(imageURI);
+    ft.upload(imageURI, encodeURI("http://kppreventsmarketing.com/webservices/UploadBanner.php?event_id="+event_id+""), win, fail, options);
+}
+function win(r) {
+	 // loadhide();
+	// regshow();
+	// alert("An upload: Code = " + r.response);
+	// alert("Image uploaded");
+	SpinnerPlugin.activityStop(); 
+	navigator.notification.alert('Uploaded Successfully', null, 'Image Uploading', 'ok');
+    // alert("Code = " + r.responseCode);
+    // alert("Response = " + r.response);
+    // alert("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+	 // loadhide();
+    // alert("Check Internet connection = " + error.code);
+	SpinnerPlugin.activityStop(); 
+	 // alert("Check Internet connection");
+	 navigator.notification.alert('Check Internet connection', null, 'Error', 'Try Again');
+    // alert("upload error source " + error.source);
+    // alert("upload error target " + error.target);
+}
+//update event 
+function updateEvent(){
+            var event_id =getParameterByName('event_id');
+			var user_id =getParameterByName('user_id');
+			var event_name= $("#ename").val();
+			var event_price= $("#eprice").val();
+			var event_date= $("#edate").val();
+			var event_time= $("#etime").val();
+			var event_address = $("#eaddress").val();
+			var event_city = $("#ecity").val();
+			var event_country= $("#ecountry").val();
+			var event_description= $("#description").val();
+			 var dataString = "user_id="+ user_id +"&event_id="+event_id+ "&event_name=" + event_name + "&event_price=" + event_price + "&event_date=" + event_date +"&event_time=" + event_time + "&event_address=" + event_address + "&event_city=" + event_city + "&event_country=" + event_country + "&event_description=" + event_description;
+			 
+			 alert(event_id);
+			 			 alert(event_name);
+			  if ($.trim(user_id).length > 0 && $.trim(event_id).length > 0 && $.trim(event_name).length > 0 && $.trim(event_price).length > 0 && $.trim(event_date).length > 0   && $.trim(event_time).length > 0 && $.trim(event_address).length > 0 && $.trim(event_city).length > 0 && $.trim(event_country).length > 0 && $.trim(event_description).length > 0   ) {
+                  
+				  var options = { dimBackground: true };
+					SpinnerPlugin.activityStart("Event Updating...", options); 
+					// if( code == ucode){
+				
+				$.ajax({
+					type: "POST",
+                    url: "http://kppreventsmarketing.com/webservices/updateEventPost.php",
+                    data: dataString,
+					// {fname: fname, email: email,password:password , image: image , address : address , city : city , country :country , contact : contact},
+                    complete: function(data){
+					var str = data;	
+				
+            SpinnerPlugin.activityStop(); 
+			
+			// if(str.Status == "success"){
+			 
+			 window.location = "viewads.html?email="+email+"&user_id="+user_id+"&fbpic="+fbpic+"";
+			// }
+			// else{navigator.notification.alert('Something went wrong', null, 'Failed', 'Try Again');}
+		
+			
+			// if(str.Status == "exist")
+			// {
+				// alert("Event already exist");
+				// navigator.notification.alert('Event already exist', null, 'Event Posting Failed', 'Try Again');		
+		
+			// }
+			
+                    }
+    
+                    });   
+                // } else {alert("Invalid Code");}
+         }
+		 else { 
+		 navigator.notification.alert('Please Fill in all fields', null, 'Event Posting Failed', 'Try Again');	
+		 }		 
+        };		
+
+
+function deleteEventConfirmation()
+{ 
+	navigator.notification.confirm(
+    'Are you sure you want to delete', // message
+     deleteEvent,            // callback to invoke with index of button pressed
+    'Confirm',           // title
+    ['Delete','Cancel']     // buttonLabels
+);
+}
+
+
+function deleteEvent(buttonIndex)
+{ 
+ // alert(buttonIndex);
+	 var event_id =getParameterByName('event_id');
+	 	
+					if(buttonIndex == 1){
+						  var options = { dimBackground: true };
+					SpinnerPlugin.activityStart("Deleting ...", options); 
+						
+	$.ajax({
+		url: "http://kppreventsmarketing.com/webservices/deleteEvent.php",
+		type: "POST",
+		data: {event_id: event_id},
+		complete:function(data){
+			  SpinnerPlugin.activityStop(); 
+			  window.location.href = "viewads.html?email="+email+"&user_id="+user_id+"&fbpic="+fbpic+"";
+			
+		}
+					}); 
+					} 
+					
+	
+	
+	
+	
+
+}
 
 		
 function Pageforgetpassword(){

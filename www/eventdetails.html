@@ -11,17 +11,19 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
-        <title>Event</title>
-        <script type="text/javascript" src="cordova.js"></script>
+		 <script type="text/javascript" src="js/index.js"></script>
+		 <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
+        <title>Event</title>
+
     </head>
-    <body onload=" viewEventdetails();">
+    <body onload="viewEventdetails();">
          <div id="signup_page" data-theme="b" data-role="page">
          <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
             <h1 style="font-family:'Microsoft NeoGothic';">Post Event</h1>
             <a id="_home" href="#myPanel" class="ui-btn-left" data-icon="bars" data-iconpos="notext">Menu</a>
+			  <a id="_home" onclick="editEvent()" class="ui-btn-right" data-icon="edit" data-iconpos="notext"></a>
             <input type="hidden" id="edt_mail" />
         </div>
 		     <div data-role="panel" id="myPanel"  style="background:url('img/slider.png')no-repeat;"  data-display="push" data-position="left" data-theme="a" >
@@ -85,5 +87,10 @@
           </div>
           
         </div>
+		
+		
+		<script type="text/javascript" src="js/functions.js"></script>
+		
+		
     </body>
 </html>

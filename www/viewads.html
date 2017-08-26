@@ -20,7 +20,7 @@
          <div id="signup_page" data-theme="b" data-role="page" >
          <div id="header_home" data-position="fixed" data-tap-toggle="false" data-role="header">
 
-            <h1 style="font-family:'Microsoft NeoGothic';">Event Categories </h1>
+            <h1 style="font-family:'Microsoft NeoGothic';">Your Events </h1>
             <a id="_home" href="#myPanel" class="ui-btn-left" data-icon="bars" data-iconpos="notext">Menu</a>
             <input type="hidden" id="edt_mail" />
         </div>
@@ -30,19 +30,19 @@
 			</center>
 			<br/><br/>
             <ul data-role="listview" data-inset="false">
-
-                <!--<li data-icon="comment"><a id="go_index" href="#" style="font-family:'Microsoft NeoGothic';">Push Notification</a></li>-->
-                <li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Arts & Culture</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Career & Business</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Dancing</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Education & Learning </a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Film & Media</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Games</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Food & Drink</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Health & WEllbeing</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Hobbies & Craft</a></li>
-				<li><a id="go_history" href="form.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Community & Environment</a></li>
-                <li><a id="go_logout" href="index.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Sign Out</a></li>
+				<li><a id="go_history" onclick="postEventBanner()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">View your event</a></li>
+				<li><a id="go_history" onclick="category()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">All Categories</a></li>
+                <li><a id="go_history" onclick="arts()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Arts & Culture</a></li>
+				<li><a id="go_history" onclick="career()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Career & Business</a></li>
+				<li><a id="go_history" onclick="dance()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Dancing</a></li>
+				<li><a id="go_history" onclick="education()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Education & Learning </a></li>
+				<li><a id="go_history" onclick="film()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Film & Media</a></li>
+				<li><a id="go_history" onclick="games()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Games</a></li>
+				<li><a id="go_history" onclick="food()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Food & Drink</a></li>
+				<li><a id="go_history" onclick="health()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Health & WEllbeing</a></li>
+				<li><a id="go_history" onclick="hobbies()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Hobbies & Craft</a></li>
+				<li><a id="go_history" onclick="community()" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Community & Environment</a></li>
+                <li><a id="go_logout" href="login.html" style="background:transparent; color:white; text-shadow: none; font-family:'Microsoft NeoGothic';">Sign Out</a></li>
             </ul>
         </div>
           <div id="main_signup" data-role="content">

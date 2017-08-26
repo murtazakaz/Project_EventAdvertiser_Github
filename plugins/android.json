@@ -21,6 +21,9 @@
         },
         "cordova-plugin-spinner": {
             "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.msglobal.kpprAdvertise"
         }
     },
     "dependent_plugins": {
